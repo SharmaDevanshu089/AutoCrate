@@ -1,4 +1,3 @@
-````markdown
 #      _         _        _____           _       
 #     / \   _ __| |_ ___ / ____|_ __ __ _| |_ ___ 
 #    / _ \ | '__| __/ _ \|  _| | '__/ _` | __/ _ \
@@ -30,7 +29,6 @@ Clone the repo and build with Cargo:
 ```bash
 git clone https://github.com/your-username/autocrate.git
 cd autocrate
-````
 
 ### 🔨 Compile
 
