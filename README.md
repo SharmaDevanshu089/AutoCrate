@@ -1,11 +1,12 @@
+````
 #      _         _        _____           _       
 #     / \   _ __| |_ ___ / ____|_ __ __ _| |_ ___ 
 #    / _ \ | '__| __/ _ \|  _| | '__/ _` | __/ _ \
 #   / ___ \| |  | || (_) | |___| | | (_| | ||  __/
 #  /_/   \_\_|   \__\___/|_____|_|  \__,_|\__\___|
 
+````
 # 🚀 AutoCrate
-
 **AutoCrate** is a Rust-powered CLI tool that automates your workflow by creating sequential Rust projects (`gpt1`, `gpt2`, …), initializing git repositories, and opening them directly in your editor.  
 
 Stop wasting time setting up projects — just run one command and start coding.  
