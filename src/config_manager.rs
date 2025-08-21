@@ -1,5 +1,5 @@
 use std::fs::{create_dir_all, File};
-use std::{fs, path};
+//use std::{fs, path};
 use std::path::Path;
 
 use crate::error_handler;
@@ -26,14 +26,14 @@ pub fn test(){
     }
 }
 pub fn create_root() {
-    let new_root = create_dir_all(CONFIG_ROOT);
-    match new_root {
-        Ok(new_root) => (),
-        Err(new_root) => error_handler::errorout("dir_creation",new_root.to_string()),
+    let _new_root = create_dir_all(CONFIG_ROOT);
+    match _new_root {
+        Ok(_new_root) => (),
+        Err(_new_root) => error_handler::errorout("dir_creation",_new_root.to_string()),
     }
-    let new_file = File::create(CONFIG_FILE);
-    match  new_file{
-        Ok(new_file) => (),
-        Err(new_file) => error_handler::errorout("config_creation",new_file.to_string()),
+    let _new_file = File::create(CONFIG_FILE);
+    match  _new_file{
+        Ok(_new_file) => (),
+        Err(_new_file) => error_handler::errorout("config_creation",_new_file.to_string()),
     }
 }
