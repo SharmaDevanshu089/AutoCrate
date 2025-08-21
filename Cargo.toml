@@ -1,6 +1,6 @@
 [package]
 name = "AUTOCRATE"
-version = "0.2.1"
+version = "0.4.0"
 edition = "2024"
 
 [dependencies]
@@ -13,3 +13,4 @@ serde_json = "1.0.143"
 #v0.1.0 Added is there config to Check if Config exists.
 #v0.2.0 Added a Proper and Scalable Error Handling as well as ability to write to logfile.
 #v0.3.0 Added Root Directory Creation with error Handling.
+#v0.4.0 Added the first Setup Process
