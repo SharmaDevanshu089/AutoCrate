@@ -79,6 +79,7 @@ Example:
 * [x] Cargo + project creation.
 * [x] Local git repo init + commit.
 * [x] Open in VS Code.
+* [ ] Encription via Keyring and storing credentials.
 * [ ] GitHub repo creation + push.
 * [ ] Support multiple editors (RustRover, Vim, Helix).
 * [ ] Project templates (CLI, GUI, web).
