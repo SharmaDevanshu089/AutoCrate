@@ -14,5 +14,10 @@ pub fn is_there_config() -> bool{
 }
 
 pub fn test(){
-    println!("Testing Sucess!");
+    if is_there_config() {
+        println!("Config is there");
+    }
+    else {
+        println!("There is no root directory");
+    }
 }
