@@ -2,7 +2,7 @@ use std::fs::{create_dir_all, File};
 //use std::{fs, path};
 use std::path::Path;
 
-use crate::error_handler;
+use crate::{error_handler, first_run};
 
 const CONFIG_ROOT: &str = "DATA";
 const CONFIG_FILE: &str = "DATA/_Config.json";
@@ -17,7 +17,7 @@ pub fn is_there_config() -> bool{
     };
     return is_root_exist;
 }
-pub fn test(){
+pub fn get_config(){
     if is_there_config() {
         println!("Config is there");
     }
@@ -36,4 +36,6 @@ pub fn create_root() {
         Ok(_new_file) => (),
         Err(_new_file) => error_handler::errorout("config_creation",_new_file.to_string()),
     }
+    //Config Creation Sucess but this is first run
+    first_run::setup();
 }

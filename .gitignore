@@ -8,3 +8,4 @@ target
 *.txt
 /DATA
 *.json
+*.exe
