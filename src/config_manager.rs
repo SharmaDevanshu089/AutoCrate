@@ -1,7 +1,7 @@
 use std::{fs, path};
 use std::path::Path;
 
-const CONFIG_ROOT: &str = "%APPDATA%/AutoCrate/";
+const CONFIG_ROOT: &str = "%APPDATA%/AutoCrate/_Config.json";
 pub fn is_there_config() -> bool{
     let root_path = Path::new(CONFIG_ROOT);
     let is_root_exist = if root_path.exists() 
