@@ -1,5 +1,5 @@
 use std::fs;
 
 pub fn write(){
-    fs::write(readme.txt, "Hello World");
+    println!("{}",fs::read_to_string("readme.txt").unwrap());
 }
