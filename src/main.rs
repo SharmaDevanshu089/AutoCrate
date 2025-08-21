@@ -9,6 +9,7 @@ fn main() {
     }
     else {
         let newfile = File::create("Count.txt").unwrap();
+        fnloop();
     }
 }
 fn fnloop() {
