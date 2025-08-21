@@ -28,7 +28,7 @@ pub fn test(){
 pub fn create_root() {
     let newfile = File::create(CONFIG_FILE);
     match  newfile{
-        Ok(_) => (),
-        Err(_) => error_handler::errorout("config_creation"),
+        Ok(newfile) => (),
+        Err(newfile) => error_handler::errorout("config_creation",newfile.to_string()),
     }
 }
