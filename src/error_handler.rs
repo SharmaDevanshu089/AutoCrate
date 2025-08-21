@@ -6,6 +6,7 @@ const LOGFILE:&str = "autocrate_debug.log";
 pub fn errorout(error: &str, to_log:String) {
     match error {
         "config_creation" => { println!("Unable to Create Config");log(to_log);}
+        "dir_creation" => { println!("Unable to Create Root Directory");log(to_log);}
         _ => {println!("Unkown Error Occured");}
     }
 }
