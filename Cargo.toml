@@ -6,6 +6,7 @@ edition = "2024"
 [dependencies]
 serde = "1.0.219"
 serde_json = "1.0.143"
+directories = "6.0.0"
 
 
 
@@ -14,3 +15,6 @@ serde_json = "1.0.143"
 #v0.2.0 Added a Proper and Scalable Error Handling as well as ability to write to logfile.
 #v0.3.0 Added Root Directory Creation with error Handling.
 #v0.4.0 Added the first Setup Process
+#v0.4.5 Fixed config being saved to working directories
+#v0.4.6 Need to revamp entire config saving, using directories
+#v0.4.7 Minor Fixes in log for easy reading
