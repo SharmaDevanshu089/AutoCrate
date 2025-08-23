@@ -1,16 +1,13 @@
 use std::fs::{create_dir_all, File};
-//use std::{fs, path};
 use std::path::Path;
 use directories::ProjectDirs;
-
 use crate::{error_handler, first_run};
 
-const CONFIG_ROOT: &str = "DATA";//for if some code stopped working
-const CONFIG_FILE: &str = "DATA/_Config.json";//want to replace these with get_directory
-const SERIOUS_ERROR: &str = "A very Serious Internal Compilation time error occured cannot continue, try recompling form source";//yeah i want my code clean
+const SERIOUS_ERROR: &str = "A very Serious Internal Compilation time error occured cannot continue, try recompling from source";
 
 pub fn is_there_config() -> bool{
-    let root_path = Path::new(get_directory("config_root"));
+    let dir =get_directory("config_root");
+    let root_path = Path::new(&dir);
     let is_root_exist = if root_path.exists() 
     { 
         true
@@ -44,13 +41,16 @@ pub fn create_root() {
 pub fn get_directory(type_of:&str) -> String{
     let program_name = ProjectDirs::from("dev", "sharmadevanshu089", "autocrate").expect(SERIOUS_ERROR);
     let config_root = program_name.config_dir().to_str().expect(SERIOUS_ERROR);
-    let config_file_old = config_root.to_owned()+"\\_Config.json";
-    let config_file = config_file_old.as_str();
-    let mut return_value = "";
+    let mut config_file = program_name.config_dir().to_path_buf();
+    config_file.push("_Config.json");
+    // let config_file_old = config_root.to_owned()+"\\_Config.json";
+    // let config_file = config_file_old.as_str();
+    let mut empty_value = "";
     match type_of {
-        "config_file" => return_value = config_file,
-        "config_root" => return_value = config_root,
+        "config_file" => empty_value = config_file.to_str().expect(SERIOUS_ERROR),
+        "config_root" => empty_value = config_root,
         _ => error_handler::errorout_no_log("unmentioned_type_of"),
     }
-    return return_value.to_owned();
+    let return_value = empty_value.to_string();
+    return return_value;
 }

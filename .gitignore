@@ -9,3 +9,4 @@ target
 /DATA
 *.json
 *.exe
+*.log
