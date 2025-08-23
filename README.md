@@ -8,7 +8,7 @@
 ```
 
 # 🚀 AutoCrate
-**AutoCrate** is a Rust-powered CLI tool that automates your workflow by creating sequential Rust projects (`gpt1`, `gpt2`, …), initializing git repositories, and opening them directly in your editor.  
+**AutoCrate** is a Rust-powered CLI tool that automates your workflow by creating sequential Rust projects via a usique name, initializing git repositories, as well as automatically adding various functions as boilerplate and opening them directly in your editor to save your Precious time.  
 
 Stop wasting time setting up projects — just run one command and start coding.  
 
