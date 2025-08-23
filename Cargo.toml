@@ -17,4 +17,5 @@ directories = "6.0.0"
 #v0.4.0 Added the first Setup Process
 #v0.4.5 Fixed config being saved to working directories
 #v0.4.6 Need to revamp entire config saving, using directories
-#v0.4.7 Minor Fixes in log for easy reading
+#v0.4.7 Fixed the log for easy reading
+#v0.4.8 Fixed Borrowing issurs
