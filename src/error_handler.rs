@@ -1,5 +1,6 @@
 use std::fs::OpenOptions;
 use std::io::Write;
+use crate::first_run;
 
 const LOGFILE:&str = "autocrate_debug.log"; 
 
@@ -7,6 +8,7 @@ pub fn errorout(error: &str, to_log:String) {
     match error {
         "config_creation" => { println!("Unable to Create Config;");log(to_log);}
         "dir_creation" => { println!("Unable to Create Root Directory;");log(to_log);}
+        "need_string_valid" => {println!("Need Valid String");first_run::get_program_name_to_json();}
         _ => {println!("Unkown Error Occured");}
     }
 }
