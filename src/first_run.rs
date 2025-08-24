@@ -1,6 +1,6 @@
 use colored::Colorize;
 
-use crate::{get_input, main};
+use crate::{error_handler, get_input, main};
 
 const NAME_BANNER:&str = " █████╗ ██╗   ██╗████████╗ ██████╗  ██████╗ ██████╗  █████╗ ████████╗███████╗
 ██╔══██╗██║   ██║╚══██╔══╝██╔═══██╗██╔════╝ ██╔══██╗██╔══██╗╚══██╔══╝██╔════╝
@@ -24,5 +24,7 @@ pub fn print_intro(){
 }
 pub fn get_program_name_to_json(){
     println!("\n\n\n\nPlease tell what will be the name of your sequential projects (eg: leet_code_question, question , test) :");
-    get_input();
+    let name = get_input().trim();
+    //filtering
+    
 }
