@@ -18,7 +18,7 @@ pub fn is_there_config() -> bool{
 }
 pub fn get_config(){
     if is_there_config() {
-        println!("Config is there");
+        println!("config is there")
     }
     else {
         create_root();
