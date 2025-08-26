@@ -32,7 +32,6 @@ const BARRIER:&str = "═══════════════════�
         let msg ="\n\n\n\nPlease tell what will be the name of your sequential projects (eg: leet_code_question, question , test) :".color("green").to_string();
         println!("{}",msg);
         let name = get_input().trim().to_string();
-        println!("before filtering");
         //filtering
         let filtered_name =crate::filter(name.to_string());
         //this will initialise default json

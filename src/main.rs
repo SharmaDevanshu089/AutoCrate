@@ -33,7 +33,6 @@ pub fn filter(data:String) -> String{
     //      Ok(regex_filter) => regex_filter,
     //      Err(regex_filter) => {error_handler::errorout("regex_error", regex_filter.to_string());unreachable!()},
     // }
-    println!("filter");
     if regex_filter.is_match(data.as_str()) {
         return data;
     }
