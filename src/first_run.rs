@@ -1,6 +1,6 @@
 use colored::Colorize;
 
-use crate::{config_manager, error_handler, get_input, main};
+use crate::{config_manager, error_handler, get_input, main, select_folder};
 
 const NAME_BANNER:&str = " █████╗ ██╗   ██╗████████╗ ██████╗  ██████╗ ██████╗  █████╗ ████████╗███████╗
 ██╔══██╗██║   ██║╚══██╔══╝██╔═══██╗██╔════╝ ██╔══██╗██╔══██╗╚══██╔══╝██╔════╝
@@ -12,6 +12,7 @@ const BARRIER:&str = "═══════════════════�
 
     struct _Config{
         serial_name:String,
+        //TODO : use path instead of string
         super_folder_path:String,
         add_shortcut:bool,
         editor:String,
@@ -28,14 +29,35 @@ const BARRIER:&str = "═══════════════════�
         get_program_name_to_json();
     }
     pub fn get_program_name_to_json(){
-        println!("\n\n\n\nPlease tell what will be the name of your sequential projects (eg: leet_code_question, question , test) :");
-        let name = get_input().trim();
+        let msg ="\n\n\n\nPlease tell what will be the name of your sequential projects (eg: leet_code_question, question , test) :".color("green").to_string();
+        println!("{}",msg);
+        let name = get_input().trim().to_string();
         //filtering
         let filtered_name =crate::filter(name.to_string());
-        let default_config = _Config {
+        //this will initialise default json
+        let mut default_config = _Config {
             serial_name : filtered_name,
-            super_folder_path : " ".to_owned(),
-            add_shortcut : false,
-            editor : "code",
+            //adding default user documents as default file
+            super_folder_path : config_manager::get_directory("documents_dir"),
+            //adding shortcut to start
+            add_shortcut : true,
+            //currently only supports code
+            editor : "code".to_owned(),
         };
+        //added path
+        default_config = get_super_path_from_user(default_config);
+
+    }
+    pub fn get_super_path_from_user(mut config:_Config) -> _Config{
+        let msg = "\nWhat Should be your folder where files will be stored: Press [y] to choose folder".color("green");
+        let barrier = BARRIER.color("yellow");
+        println!("{}\n{}" ,barrier,msg);
+        let choice = get_input();
+        if choice == "y" ||choice == "Y" {
+            config.super_folder_path = select_folder();
+        }
+        else {
+            return get_super_path_from_user(config);
+        }
+        return config;
     }

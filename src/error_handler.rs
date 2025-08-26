@@ -13,6 +13,7 @@ pub fn errorout(error: &str, to_log:String) {
         "need_string_valid" => {println!("Need Valid String");first_run::get_program_name_to_json();}
         "name_is_empty" => {println!("The String should not be empty");first_run::get_program_name_to_json();}
         "regex_error" => {println!("Unable to Create a Filter. This is a fatal error. Please check github for latest Release. Restarting Program");main();log(to_log);}
+        "folder_diag" => {println!("Unable to get folder. Try Again");first_run::get_program_name_to_json();log(to_log);}
         _ => {println!("Unkown Error Occured");panic!("Error Occured")}
     }
 }

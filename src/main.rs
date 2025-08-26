@@ -1,5 +1,7 @@
 use std::io;
+use colored::Colorize;
 use regex::Regex;
+use rfd::FileDialog;
 
 mod config_manager;
 mod error_handler;
@@ -9,7 +11,7 @@ mod first_run;
 const SERIOUS_ERROR: &str = "A very Serious Internal Compilation time error occured cannot continue, try recompling from source";
 
 fn main(){
-    first_run::print_intro();
+    select_folder();
 }
 pub fn get_input() -> String {
     let line_read = io::read_to_string(io::stdin());
@@ -31,4 +33,9 @@ pub fn filter(data:String) -> String{
         error_handler::not_valid_string();
         return "err".to_owned();
     }
+}
+pub fn select_folder() -> String{
+    let folder_name = FileDialog::new().pick_folder().expect(&"Unable to get folder Name".color("red"));
+    let final_name = folder_name.to_string_lossy();
+    return final_name.to_string();
 }

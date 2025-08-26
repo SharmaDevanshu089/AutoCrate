@@ -9,6 +9,7 @@ serde_json = "1.0.143"
 directories = "6.0.0"
 colored = "3.0.0"
 regex = "1.11.2"
+rfd = "0.15.4"
 
 
 
@@ -22,3 +23,4 @@ regex = "1.11.2"
 #v0.4.8 Fixed Borrowing issurs
 #v0.5.0 Added Scalable Setup with colours
 #v0.5.1 Added Filter for Username
+#v0.5.3 Added File Explorer opening options using rfd
