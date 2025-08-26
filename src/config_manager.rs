@@ -16,14 +16,14 @@ pub fn is_there_config() -> bool{
     };
     return is_root_exist;
 }
-pub fn get_config(){
-    if is_there_config() {
-        println!("config is there")
-    }
-    else {
-        create_root();
-    }
-}
+// pub fn get_config(){
+//     if is_there_config() {
+//         println!("config is there")
+//     }
+//     else {
+//         create_root();
+//     }
+// }
 pub fn create_root() {
     let _new_root = create_dir_all(get_directory("config_root"));
     match _new_root {
@@ -36,7 +36,7 @@ pub fn create_root() {
         Err(_new_file) => error_handler::errorout("config_creation",_new_file.to_string()),
     }
     //Config Creation Sucess but this is first run
-    first_run::setup();
+    // first_run::setup();
 }
 pub fn get_directory(type_of:&str) -> String{
     let program_name = ProjectDirs::from("dev", "sharmadevanshu089", "autocrate").expect(SERIOUS_ERROR);

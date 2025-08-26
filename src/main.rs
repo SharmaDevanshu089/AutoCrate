@@ -11,13 +11,20 @@ mod first_run;
 const SERIOUS_ERROR: &str = "A very Serious Internal Compilation time error occured cannot continue, try recompling from source";
 
 fn main(){
-    select_folder();
+    if config_manager::is_there_config() {
+        println!("config exists");
+    }
+    else {
+        config_manager::create_root();
+        first_run::setup();
+    }
+
 }
 pub fn get_input() -> String {
-    let line_read = io::read_to_string(io::stdin());
-    match line_read {
-        Ok(line_read) => line_read,
-        Err(line_read) => {error_handler::errorout("need_string_valid", line_read.to_string());unreachable!()},
+    let mut line_read =String::new() ;
+    match io::stdin().read_line(&mut line_read) {
+        Ok(_) => line_read.trim().to_string(),
+        Err(e) => {error_handler::errorout("need_string_valid", e.to_string());unreachable!()},
     }
 }
 pub fn filter(data:String) -> String{
@@ -26,6 +33,7 @@ pub fn filter(data:String) -> String{
     //      Ok(regex_filter) => regex_filter,
     //      Err(regex_filter) => {error_handler::errorout("regex_error", regex_filter.to_string());unreachable!()},
     // }
+    println!("filter");
     if regex_filter.is_match(data.as_str()) {
         return data;
     }
