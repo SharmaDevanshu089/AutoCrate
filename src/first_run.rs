@@ -46,6 +46,8 @@ const BARRIER:&str = "═══════════════════�
         };
         //added path
         default_config = get_super_path_from_user(default_config);
+        default_config = add_shortcut(default_config);
+
         
     }
     pub fn get_super_path_from_user(mut config:_Config) -> _Config{
@@ -58,6 +60,23 @@ const BARRIER:&str = "═══════════════════�
         }
         else {
             return get_super_path_from_user(config);
+        }
+        return config;
+    }
+    pub fn add_shortcut(mut config:_Config) ->_Config {
+        let barrier = BARRIER.color("yellow");
+        let msg ="Would you like to add Folder Shortcut to your Start menu , as this will allow to search between projects".color("green").to_string();
+        let msg2 ="[y] for Yes or [n] for no".color("yellow").bold().to_string();
+        println!("{}{} \n\n {}",msg,msg2,barrier);
+        let mut choice = get_input();
+        if choice == "y" || choice == "Y" {
+            config.add_shortcut = true;
+        }
+        else if choice == "n" || choice == "N" {
+            config.add_shortcut = false;
+        }
+        else {
+            return add_shortcut(config);
         }
         return config;
     }

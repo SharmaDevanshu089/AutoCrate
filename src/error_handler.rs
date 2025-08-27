@@ -1,7 +1,7 @@
 use colored::Colorize;
 use std::fs::OpenOptions;
 use std::io::Write;
-//test commit
+
 use crate::{
     first_run::{self, get_program_name_to_json},
     main,
