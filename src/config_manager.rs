@@ -1,7 +1,9 @@
 use std::fs::{create_dir_all, File};
 use std::path::Path;
 use directories::{ProjectDirs,UserDirs};
+use crate::error_handler::errorout;
 use crate::{error_handler, first_run};
+use crate::first_run::_Config;
 
 const SERIOUS_ERROR: &str = "A very Serious Internal Compilation time error occured cannot continue, try recompling from source";
 
@@ -56,4 +58,13 @@ pub fn get_directory(type_of:&str) -> String{
     }
     let return_value = empty_value.to_string();
     return return_value;
+}
+pub fn to_json(config_to_add_in_json:_Config){
+    let mut stringed_json = String::new();
+    let text_to_json = serde_json::to_string(&config_to_add_in_json);
+    match text_to_json {
+        Ok(text_to_json) => stringed_json = text_to_json,
+        Err(e) => errorout("no_json_conversion", e.to_string()),
+    }
+    println!("{}", stringed_json);
 }

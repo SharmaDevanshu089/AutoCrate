@@ -1,6 +1,7 @@
 use colored::Colorize;
-
-use crate::{config_manager, error_handler, get_input, main, select_folder};
+use crate::{config_manager::{self, to_json},get_input,select_folder};
+use serde::{self, Deserialize, Serialize};
+use serde_json;
 
 const NAME_BANNER:&str = " █████╗ ██╗   ██╗████████╗ ██████╗  ██████╗ ██████╗  █████╗ ████████╗███████╗
 ██╔══██╗██║   ██║╚══██╔══╝██╔═══██╗██╔════╝ ██╔══██╗██╔══██╗╚══██╔══╝██╔════╝
@@ -10,7 +11,8 @@ const NAME_BANNER:&str = " █████╗ ██╗   ██╗████�
 ╚═╝  ╚═╝ ╚═════╝    ╚═╝    ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝";
 const BARRIER:&str = "════════════════════════════════════════════════════════════════════════════════";
 
-    struct _Config{
+#[derive(Serialize,Deserialize)]
+    pub struct _Config{
         serial_name:String,
         //TODO : use path instead of string
         super_folder_path:String,
@@ -47,7 +49,7 @@ const BARRIER:&str = "═══════════════════�
         //added path
         default_config = get_super_path_from_user(default_config);
         default_config = add_shortcut(default_config);
-
+        to_json(default_config);
         
     }
     pub fn get_super_path_from_user(mut config:_Config) -> _Config{
@@ -67,7 +69,7 @@ const BARRIER:&str = "═══════════════════�
         let barrier = BARRIER.color("yellow");
         let msg ="Would you like to add Folder Shortcut to your Start menu , as this will allow to search between projects".color("green").to_string();
         let msg2 ="[y] for Yes or [n] for no".color("yellow").bold().to_string();
-        println!("{}{} \n\n {}",msg,msg2,barrier);
+        println!("{}{} \n\n",msg,msg2);
         let mut choice = get_input();
         if choice == "y" || choice == "Y" {
             config.add_shortcut = true;
@@ -78,5 +80,6 @@ const BARRIER:&str = "═══════════════════�
         else {
             return add_shortcut(config);
         }
+        println!("{}",barrier);
         return config;
     }
