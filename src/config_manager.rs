@@ -1,9 +1,10 @@
-use std::fs::{create_dir_all, File};
+use std::fs::{self, create_dir_all, File};
 use std::path::Path;
 use directories::{ProjectDirs,UserDirs};
 use crate::error_handler::errorout;
 use crate::{error_handler, first_run};
 use crate::first_run::_Config;
+use fs::write;
 
 const SERIOUS_ERROR: &str = "A very Serious Internal Compilation time error occured cannot continue, try recompling from source";
 
@@ -66,5 +67,9 @@ pub fn to_json(config_to_add_in_json:_Config){
         Ok(text_to_json) => stringed_json = text_to_json,
         Err(e) => errorout("no_json_conversion", e.to_string()),
     }
-    println!("{}", stringed_json);
+    let file_write =fs::write(get_directory("config_file"), stringed_json);
+    match file_write{
+        Ok(file_write) => (),
+        Err(file_write) => errorout("config_write", file_write.to_string()),
+    }
 }

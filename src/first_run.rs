@@ -2,6 +2,7 @@ use colored::Colorize;
 use crate::{config_manager::{self, to_json},get_input,select_folder};
 use serde::{self, Deserialize, Serialize};
 use serde_json;
+use std::fs::write;
 
 const NAME_BANNER:&str = " █████╗ ██╗   ██╗████████╗ ██████╗  ██████╗ ██████╗  █████╗ ████████╗███████╗
 ██╔══██╗██║   ██║╚══██╔══╝██╔═══██╗██╔════╝ ██╔══██╗██╔══██╗╚══██╔══╝██╔════╝
@@ -69,7 +70,7 @@ const BARRIER:&str = "═══════════════════�
         let barrier = BARRIER.color("yellow");
         let msg ="Would you like to add Folder Shortcut to your Start menu , as this will allow to search between projects".color("green").to_string();
         let msg2 ="[y] for Yes or [n] for no".color("yellow").bold().to_string();
-        println!("{}{} \n\n",msg,msg2);
+        println!("\n{}\n\n\n{}{} \n\n",barrier,msg,msg2);
         let mut choice = get_input();
         if choice == "y" || choice == "Y" {
             config.add_shortcut = true;
