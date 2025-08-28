@@ -1,5 +1,5 @@
 use colored::Colorize;
-use crate::{config_manager::{self, to_json},get_input,select_folder};
+use crate::{config_manager::{self, to_json}, get_input, main, select_folder};
 use serde::{self, Deserialize, Serialize};
 use serde_json;
 use std::fs::write;
@@ -14,11 +14,11 @@ const BARRIER:&str = "═══════════════════�
 
 #[derive(Serialize,Deserialize)]
     pub struct _Config{
-        serial_name:String,
+        pub serial_name:String,
         //TODO : use path instead of string
-        super_folder_path:String,
-        add_shortcut:bool,
-        editor:String,
+        pub super_folder_path:String,
+        pub add_shortcut:bool,
+        pub editor:String,
     }
 
     //this is like setup for the code
@@ -51,6 +51,7 @@ const BARRIER:&str = "═══════════════════�
         default_config = get_super_path_from_user(default_config);
         default_config = add_shortcut(default_config);
         to_json(default_config);
+        main();
         
     }
     pub fn get_super_path_from_user(mut config:_Config) -> _Config{

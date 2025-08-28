@@ -88,3 +88,19 @@ pub fn read_json_to_struct() -> _Config{
     }
     return read_config;
 }
+pub fn get_data_from_json(type_of_data:String) -> String{
+    let mut returning_data =String::new();
+    if type_of_data == "name"{
+        let name = read_json_to_struct().serial_name;
+        returning_data = name;
+    } 
+    else if type_of_data == "super_f" {
+        let name = read_json_to_struct().super_folder_path;
+        returning_data = name;
+    }
+    else {
+        error_handler::errorout("no_type", "Unknown Type of Data called from get_data_from_json".to_string());
+        panic!();
+    }
+    return returning_data; 
+}
