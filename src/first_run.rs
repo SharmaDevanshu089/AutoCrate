@@ -84,3 +84,15 @@ const BARRIER:&str = "═══════════════════�
         println!("{}",barrier);
         return config;
     }
+pub fn return_a_Config() -> _Config{
+        let mut config = _Config {
+            serial_name : "name".to_string(),
+            //adding default user documents as default file
+            super_folder_path : config_manager::get_directory("documents_dir"),
+            //adding shortcut to start
+            add_shortcut : true,
+            //currently only supports code
+            editor : "code".to_owned(),
+        };
+    return config;
+}

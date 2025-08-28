@@ -12,7 +12,7 @@ const SERIOUS_ERROR: &str = "A very Serious Internal Compilation time error occu
 
 fn main(){
     if config_manager::is_there_config() {
-        println!("config exists");
+        
     }
     else {
         config_manager::create_root();

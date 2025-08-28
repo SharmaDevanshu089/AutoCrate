@@ -3,7 +3,7 @@ use std::path::Path;
 use directories::{ProjectDirs,UserDirs};
 use crate::error_handler::errorout;
 use crate::{error_handler, first_run};
-use crate::first_run::_Config;
+use crate::first_run::{_Config, return_a_Config};
 use fs::write;
 
 const SERIOUS_ERROR: &str = "A very Serious Internal Compilation time error occured cannot continue, try recompling from source";
@@ -72,4 +72,19 @@ pub fn to_json(config_to_add_in_json:_Config){
         Ok(file_write) => (),
         Err(file_write) => errorout("config_write", file_write.to_string()),
     }
+}
+pub fn read_json_to_struct() -> _Config{
+    let read_file = fs::read_to_string(get_directory("config_file"));
+    let mut data_from_json = String::new();
+    match read_file {
+        Ok(read_file) => data_from_json= read_file,
+        Err(read_file) => errorout("config_read", read_file.to_string()),
+    }
+    let mut read_config:_Config= return_a_Config();
+    let mut read_result = serde_json::from_str(&data_from_json);
+    match read_result {
+        Ok(read_result) => read_config = read_result,
+        Err(read_result) => errorout("config_read_conversion", read_result.to_string()),
+    }
+    return read_config;
 }
