@@ -1,6 +1,6 @@
 [package]
 name = "AUTOCRATE"
-version = "0.4.0"
+version = "0.6.0"
 edition = "2024"
 
 [dependencies]
@@ -25,3 +25,4 @@ rfd = "0.15.4"
 #v0.5.1 Added Filter for Username
 #v0.5.3 Added File Explorer opening options using rfd
 #v0.5.6 Fixed Major Problems
+#v0.6.0 Added Full file reading and writing capablities
