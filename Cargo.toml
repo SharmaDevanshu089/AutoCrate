@@ -28,3 +28,4 @@ rfd = "0.15.4"
 #v0.6.0 Added Full file reading and writing capablities
 #v0.7.0 Added ability to count numbers
 #v0.7.1 Fixed 0 Folders issue
+#v0.8.0 Added Ability to call Cargo and Create new folder

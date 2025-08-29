@@ -2,8 +2,9 @@ use std::{fmt::format, io, path::{self, PathBuf}};
 use colored::Colorize;
 use regex::Regex;
 use rfd::FileDialog;
-
-use crate::config_manager::get_data_from_json;
+use std::process::Command;
+use crate::{config_manager::{get_data_from_json, get_directory}, error_handler::errorout};
+use crate::first_run::BARRIER;
 
 mod config_manager;
 mod error_handler;
@@ -50,7 +51,7 @@ pub fn select_folder() -> String{
 }
 fn start_program(){
     let mut highest_number = get_highest_number();
-    println!("{}",highest_number);
+    create_new_project(highest_number);
 }
 fn get_highest_number() -> i32{
     //gets highest number
@@ -78,4 +79,34 @@ fn get_highest_number() -> i32{
         highest = 1;
     }
     return highest;
+}
+fn create_new_project(highest:i32){
+    let name = get_data_from_json("name".to_string());
+    let dircetory = get_data_from_json("super_f".to_string());
+    let location = format!("{}{}{}{}",dircetory,"\\",name,highest);
+    let movable_location = location.clone();
+    let status = Command::new("cargo").arg("new").arg(location).status().expect(SERIOUS_ERROR);
+    if status.success(){
+        let barrier = BARRIER.color("green");
+        let program_name = format!("{}{}",name.clone(),highest.clone()).color("green").italic();
+        let msg = "The Cargo Program".color("yellow");
+        let msg_3 = "has been Created , would you like to open it?".color("yellow");
+        let msg_2 = "Press [y] to open".bold().color("yellow") ;
+        println!("{}\n{} {} {}\n{}",barrier,msg,program_name,msg_3,msg_2);
+        let open = get_input();
+        if open == "y"|| open == "Y"{
+            open_in_editor( movable_location);
+    }
+    else {
+        let msg = "CARGO HAS RETURNED A ERROR".bold().color("RED").on_blue();
+        println!("{}",msg);
+    }
+
+    }}
+fn open_in_editor(locale:String){
+    let command = Command::new("C:\\Users\\YourUser\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe").arg(locale).output();
+    match command {
+       Ok(command) => println!("ok"),
+       Err(command) => println!("{}",command),
+    }
 }
