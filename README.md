@@ -37,8 +37,9 @@ Getting started with AutoCrate is incredibly simple.
 The easiest way to install AutoCrate is by using the pre-compiled binary.
 
 1.  Head over to the [**Releases Page**](https://github.com/SharmaDevanshu089/AutoCrate/releases) on GitHub.
-2.  Download the `autocrate.exe` and `install.bat` files from the latest release.
-3.  Place both files in the same directory and **run `install.bat`**. This script will automatically set up AutoCrate and add it to your system's PATH.
+2.  Download the zip and Extract it.
+3.  Open the zip and **run `install.bat`**. This script will automatically set up AutoCrate and add it to your system's PATH.
+4.  Now Open Command Prompt from Start Menu
 
 ### **2. First-Time Setup**
 
