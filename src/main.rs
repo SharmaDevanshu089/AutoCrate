@@ -53,6 +53,11 @@ fn start_program(){
     let mut highest_number = get_highest_number();
     create_new_project(highest_number);
 }
+
+fn cargo_exists() -> bool {
+    Command::new("cargo").arg("--version").output().is_ok()
+}
+
 fn get_highest_number() -> i32{
     //gets highest number
     let name = get_data_from_json("name".to_string()).to_string();
@@ -85,7 +90,14 @@ fn create_new_project(highest:i32){
     let dircetory = get_data_from_json("super_f".to_string());
     let location = format!("{}{}{}{}",dircetory,"\\",name,highest);
     let movable_location = location.clone();
-    let status = Command::new("cargo").arg("new").arg(location).status().expect(SERIOUS_ERROR);
+    if cargo_exists() {
+        // use match for better approuch
+        let status = Command::new("cargo").arg("new").arg(location).status().expect(SERIOUS_ERROR);
+    }
+    else {
+        println!("{}", "Install Rust/Cargo before running the program".color("yellow"));
+        return;
+    }
     if status.success(){
         let barrier = BARRIER.color("green");
         let program_name = format!("{}{}",name.clone(),highest.clone()).color("green").italic();
