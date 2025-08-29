@@ -1,6 +1,6 @@
 [package]
 name = "AUTOCRATE"
-version = "0.7.1"
+version = "0.9.7"
 edition = "2024"
 
 [dependencies]
