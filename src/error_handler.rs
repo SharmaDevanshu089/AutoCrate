@@ -45,7 +45,7 @@ pub fn errorout(error: &str, to_log: String) {
         }
     }
 }
-fn log(to_log: String) {
+pub fn log(to_log: String) {
     let mut log_file = OpenOptions::new().append(true).create(true).open(LOGFILE).expect("We are unable to find or create a logfile this is a fatal error and we really dont know what to do;");
     log_file
         .write_all(to_log.as_bytes())
@@ -60,6 +60,7 @@ pub fn errorout_no_log(error: &str) {
         }
         _ => {
             println!("Unkown Error Occured;");
+            log(to_log);
         }
     }
 }
@@ -68,4 +69,10 @@ pub fn not_valid_string() {
     let highlight = "Alphabets (A-Z,a-z), Number (0-9)".bold().color("yellow");
     println!("{} {}", error_msg, highlight);
     get_program_name_to_json();
+}
+pub fn no_code_found(to_log: String){
+    let msg ="Visual Studio Code not found on this Computer. Try Reinstalling it. If Still not Works Please Open a Issue on Github";
+    println!("{}",msg);
+    log(to_log);
+    panic!();
 }

@@ -1,9 +1,9 @@
-use std::{fmt::format, io, path::{self, PathBuf}};
+use std::{fmt::format, io, os::windows::process, path::{self, PathBuf}, process::Output};
 use colored::Colorize;
 use regex::Regex;
 use rfd::FileDialog;
 use std::process::Command;
-use crate::{config_manager::{get_data_from_json, get_directory}, error_handler::errorout};
+use crate::{config_manager::{get_data_from_json, get_directory}, error_handler::{errorout, no_code_found}};
 use crate::first_run::BARRIER;
 
 mod config_manager;
@@ -104,9 +104,22 @@ fn create_new_project(highest:i32){
 
     }}
 fn open_in_editor(locale:String){
-    let command = Command::new("C:\\Users\\YourUser\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe").arg(locale).output();
+    let command = Command::new("cmd").arg("/C").arg("code").arg(locale).output();
     match command {
-       Ok(command) => println!("ok"),
-       Err(command) => println!("{}",command),
+       Ok(command) => check_output(command),
+       Err(command) => no_code_found(command.to_string()),
     }
+}
+fn check_output(command:Output) {
+   if command.status.success() {
+    let msg = "Everything is Done, Closing Program".color("yellow");
+    println!("{}",msg);
+    std::process::exit(0);
+   }
+   else {
+       let msg ="There has been a Error , Cannot Open VSCode but Package is still there, you can open it manually".color("red");
+       println!("{}",msg);
+       let error = String::from_utf8_lossy(&command.stderr);
+       error_handler::log(error.to_string());
+   }
 }
