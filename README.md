@@ -59,8 +59,8 @@ The first time you run this, a guided setup wizard will launch:
 Once the setup is complete, creating a new project is as simple as running `autocrate` in your terminal. It will automatically find the next number in the sequence, create the project folder (e.g., `learning_rust3`), and ask if you'd like to open it in VS Code.
 
 ---
-### **Or. You Can Compile from Source**
-## 📦 Building  
+
+## 📦 OR you can Compile from Sourec (Not Reccomended for non Developers) 
 
 Clone the repo and build with Cargo:  
 
