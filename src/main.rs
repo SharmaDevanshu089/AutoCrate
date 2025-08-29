@@ -91,11 +91,12 @@ fn create_new_project(highest:i32){
     let location = format!("{}{}{}{}",dircetory,"\\",name,highest);
     let movable_location = location.clone();
     if cargo_exists() {
+        // use match for better approuch
         let status = Command::new("cargo").arg("new").arg(location).status().expect(SERIOUS_ERROR);
     }
     else {
         println!("{}", "Install Rust/Cargo before running the program".color("yellow"));
-        success = false;
+        return;
     }
     if status.success(){
         let barrier = BARRIER.color("green");
