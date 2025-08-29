@@ -51,6 +51,7 @@ pub const BARRIER:&str = "══════════════════
         default_config = get_super_path_from_user(default_config);
         default_config = add_shortcut(default_config);
         to_json(default_config);
+        print_note();
         main();
         
     }
@@ -96,4 +97,12 @@ pub fn return_a_Config() -> _Config{
             editor : "code".to_owned(),
         };
     return config;
+}
+fn print_note(){
+    let msg = "Please Before using make sure your git is Configured with your username and Email and Also Make Sure you have VSCODE installed (We will add others in future)".color("green");
+    let msg_2 = "If you have any error or Query you can always create an issue on Github:".color("green");
+    let msg_3 = "https://github.com/SharmaDevanshu089/AutoCrate".bold().color("green").bold();
+    let msg_4 = "Press any key to Continue".color("yellow").bold();
+    println!("{}\n{} {}\n{}",msg,msg_2,msg_3,msg_4);
+    let _choice = get_input();
 }
