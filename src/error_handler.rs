@@ -9,6 +9,7 @@ use crate::{
 
 const LOGFILE: &str = "autocrate_debug.log";
 
+// 
 pub fn errorout(error: &str, to_log: String) {
     match error {
         "config_creation" => {
@@ -37,6 +38,27 @@ pub fn errorout(error: &str, to_log: String) {
         "folder_diag" => {
             println!("Unable to get folder. Try Again");
             first_run::get_program_name_to_json();
+            log(to_log);
+        }
+        // 🔥 NEW CASES ADDED
+        "no_json_conversion" => {
+            println!("Unable to convert Config struct into JSON;");
+            log(to_log);
+        }
+        "config_write" => {
+            println!("Unable to write Config file;");
+            log(to_log);
+        }
+        "config_read" => {
+            println!("Unable to read Config file;");
+            log(to_log);
+        }
+        "config_read_conversion" => {
+            println!("Unable to parse Config file from JSON;");
+            log(to_log);
+        }
+        "no_type" => {
+            println!("Unknown type requested from get_data_from_json;");
             log(to_log);
         }
         _ => {

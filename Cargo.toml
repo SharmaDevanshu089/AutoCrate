@@ -31,3 +31,5 @@ rfd = "0.15.4"
 #v0.8.0 Added Ability to call Cargo and Create new folder
 #v0.9.0 Added Ability to Open in VSCODE via Command , there may be error on other's System
 #v0.9.7 Added Some Notes and Created First Working Release still need to add git support
+#v0.9.8 Fixed Major Issues ,
+#v0.9.9 Optimised Release for Self Installer

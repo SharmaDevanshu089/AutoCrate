@@ -1,4 +1,4 @@
-use std::{fmt::format, io, os::windows::process, path::{self, PathBuf}, process::Output};
+use std::{fmt::format, io, path::{self, PathBuf}, process::Output};
 use colored::Colorize;
 use regex::Regex;
 use rfd::FileDialog;
@@ -93,12 +93,7 @@ fn create_new_project(highest:i32){
     if cargo_exists() {
         // use match for better approuch
         let status = Command::new("cargo").arg("new").arg(location).status().expect(SERIOUS_ERROR);
-    }
-    else {
-        println!("{}", "Install Rust/Cargo before running the program".color("yellow"));
-        return;
-    }
-    if status.success(){
+        if status.success(){
         let barrier = BARRIER.color("green");
         let program_name = format!("{}{}",name.clone(),highest.clone()).color("green").italic();
         let msg = "The Cargo Program".color("yellow");
@@ -112,6 +107,11 @@ fn create_new_project(highest:i32){
     else {
         let msg = "CARGO HAS RETURNED A ERROR".bold().color("RED").on_blue();
         println!("{}",msg);
+    }
+    }
+    else {
+        println!("{}", "Install Rust/Cargo before running the program".color("yellow"));
+        return;
     }
 
     }}
