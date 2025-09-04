@@ -124,7 +124,8 @@ fn open_in_editor(locale:String){
 }
 fn check_output(command:Output) {
    if command.status.success() {
-    let msg = "Everything is Done, Closing Program".color("yellow");
+    let msg = "Everything is Done, Creating a github commit".color("yellow");
+
     println!("{}",msg);
     std::process::exit(0);
    }
@@ -134,4 +135,7 @@ fn check_output(command:Output) {
        let error = String::from_utf8_lossy(&command.stderr);
        error_handler::log(error.to_string());
    }
+}
+fn create_git_commit(){
+    
 }
