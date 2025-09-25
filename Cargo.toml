@@ -33,6 +33,6 @@ rfd = "0.15.4"
 #v0.9.7 Added Some Notes and Created First Working Release still need to add git support
 #v0.9.8 Fixed Major Issues ,
 #v0.9.9 Optimised Release for Self Installer
---------CURRENT--------
+#--------CURRENT--------
 #v1.1.2 Ability to add files to git
 #v1.2.1 Ability to Stage and Commit a Initial Commit.
